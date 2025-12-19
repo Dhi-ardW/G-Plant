@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Generasi</title>
+</head>
+<body>
+   <h1>Selamat datang di Website Tebak Generasi </h1>
+   <p>disini anda bisa mencari tahu termasuk generasi apa anda, apakah termasuk generasi Boomer, Millenial, Gen-z atau bahkan Gen-Alpha</p>
+   <form method="POST" action="/TebakUsia">
+    <label for="tahun"> Cukup Masukan tahun kelahiaran anda maka anda akan langsung tahu anda termasuk generasi apa</label>
+    <br/>
+    <input type="tahun" name="tahun">
+    <button type="submit"> klik untuk mengetahui</button>
+   </form>
+
+   {% if usia is not none % }
+    <p>anda termasuk generasi {{usia}}</p>
+   {% endif %} 
+
+   <a href="/">kembali Beranda</a>
+   <script>
+    const p = document.querySelector('p');
+    if ( usia = null) {
+        
+        p.style.display = 'none;'
+    } else {
+        p.style.display = ' block'
+    }
+   </script>
+</body>
+</html>

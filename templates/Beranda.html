@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+           
+            align-items: center;
+            background-color: rgb(57, 71, 71);
+            color: rgb(224, 222, 222);
+            overflow-x: hidden;
+        }
+        p{
+            width: 50%;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        li {
+            font-size: 2rem;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        li a {
+            text-decoration: none;
+            
+        }
+        li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hai Visitor, Perkenalkan Namaku {{name}}</h1>
+    <p>ini adalah website prototype untuk pembelajarn python di library {{fluskL}}, jika kalian tertarik untuk mengunjungi website lain yang ku buat dengan flusk, kalian bisa memilih masuk website mana yang ingin kalian kunjungi dengan link dibawah</p>
+    
+    <ul>
+        <li ><a style="color: brown;" href="/About">About</a></li>
+        <li ><a style="color: green;" href="/Gplan">Gplan</a></li>
+        <li ><a style="color:  orangered;" href="/TebakUsia">Tebak Generasi</a></li>
+    </ul>
+    
+</body>
+</html>
