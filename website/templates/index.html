@@ -12,7 +12,7 @@
         body {
             height: 150vh;
             width: 100vw;
-            overflow-x: hidden;
+            overflow: hidden;
         }
         .border-right {
             border-right: 2px solid rgb(24, 185, 91);
@@ -30,25 +30,25 @@
 </head>
 <body class="bg-green-100 relative">
     
-    <nav class="w-screen absolute z-999 justify-around py-3 px-5 bg-green-800">
-        <div class="flex  items-center justify-between">
+    <nav class="w-screen absolute z-999 justify-center flex py-3 px-5 bg-green-800 ">
+        <div class="flex w-full items-center justify-between bg-green-900  xl:w-6xl">
             <div class="flex items-center">
-                <a href="/" class="px-3 text-green-100 text-5xl font-serif hover:text-green-300 cursor-pointer">GPLANT</a>
+                <a href="/" class="pe-3 text-green-100 text-3xl font-serif hover:text-green-300 cursor-pointer  md:text-4xl lg:text-4xl xl:text-5xl">GPLANT</a>
                 <div class=" border-left px-3 text-green-100 hover:text-green-300">
-                    <div class="flex items-center gap-2 cursor-pointer ">
+                    <div class="flex items-center gap-2 cursor-pointer hidden  xl:flex">
                         <p class="flex items-center text-xl cursor-pointer ">Category</p>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
             </div>
             <div class="flex items-center justify-between">
-                <div class="flex items-center justify-between w-2xl ps-3 border border-green-100 rounded" >
-                    <input type="text" name="search" id="search" placeholder="Cari Tanaman Anda . . ." class="text-green-100 w-full ">
+                <div class="items-center justify-between  ps-3 border border-green-100 rounded hidden   md:w-md  lg:w-xl lg:flex" >
+                    <input type="text" name="search" id="search" placeholder="Cari Tanaman Anda . . ." class="text-green-100  w-full ">
                     <button class="text-green-800  cursor-pointer  hover:bg-green-300 bg-green-100 py-2 px-3"><i class="fa-solid fa-magnifying-glass "></i></button>
                 </div>
-                <div class="flex ms-4 cursor-pointer">
-                    <button class=" hover:text-green-300 py-2 px-4 rounded mx-2 text-green-100  text-base"><a href="/login">log in</a></button>
-                    <button class=" hover:bg-green-300 rounded  py-2 px-4 bg-green-100 text-green-800 text-base"><a href="/signup">sign up</a></button>
+                <div class="flex  cursor-pointer">
+                    <button class=" hover:text-green-300 py-1 px-2 rounded mx-2 text-green-100  text-base md:py-2 md:px-4"><a href="/login">log in</a></button>
+                    <button class=" hover:bg-green-300 rounded  py-1 px-2 bg-green-100 text-green-800 text-base md:py-2 md:px-4"><a href="/signup">sign up</a></button>
                 </div>
             </div>
             
@@ -57,10 +57,10 @@
         
     </nav>
 
-    <section class="z-10 w-screen h-screen bg-green-100 flex justify-center flex-col  items-center">
-        <div class="flex gap-4 mt-20 ">
-            <div class="w-3xl h-[400px] bg-green-800  rounded-lg"></div>
-            <div class="w-sm h-[400px] rounded-lg grid grid-flow-col">
+    <section class="z-10 w-screen h-screen bg-green-100 flex justify-start flex-col  items-start lg:justify-center lg:items-center">
+        <div class="flex mt-20 px-4 w-full md:mt-25 md:px-8 xl:w-6xl">
+            <div class="w-full h-[200px] bg-green-800  rounded-lg  sm:h-[250px] md:h-[300px] lg:w-3/4 lg:h-[400px]"></div>
+            <div class="w-2/4 h-[400px] rounded-lg grid grid-flow-col hidden lg:grid">
                 <div class="col-12 bg-green-800 w-sm  mb-2  rounded">
                     <div class=" "></div>
                 </div>
@@ -74,32 +74,32 @@
         </div>
         <div class="w-6xl h-[100px]  mt-3 rounded flex items-center justify-between">
             <div class="flex items-center gap-15">
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-300 text-green-800 cursor-pointer transition  duration-300 ease">
+                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-900 text-green-800 cursor-pointer transition  duration-300 ease">
                     <i class="fa-solid fa-plant-wilt text-2xl "></i>
                     <p class=" mt-1">plant</p>
                 </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-300 text-green-800 cursor-pointer transition  duration-300 ease">
+                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-900 text-green-800 cursor-pointer transition  duration-300 ease">
                     <i class="fa-regular fa-clipboard text-2xl"></i>
                     <p class=" mt-1">Guide</p>
                 </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-300 text-green-800 cursor-pointer transition  duration-300 ease">
+                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease">
                     <i class="fa-solid fa-bottle-water text-2xl"></i>
                     <p class=" mt-1">Booster</p>
                 </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-300 text-green-800 cursor-pointer transition  duration-300 ease">
+                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease">
                     <i class="fa-solid fa-seedling text-2xl"></i>
                     <p class=" mt-1">Seed</p>
                 </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-300 text-green-800 cursor-pointer transition  duration-300 ease">
+                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease">
                     <i class="fa-regular fa-comments text-2xl"></i>
                     <p class=" mt-1">Comunity</p>
                 </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-300 text-green-800 cursor-pointer transition  duration-300 ease">
+                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease lg:text-red-500 md:text-yellow-500">
                     <i class="fa-solid fa-hands-praying text-2xl"></i>
-                    <p class=" mt-1">Donation</p>
+                    <p class=" mt-1 ">Donation</p>
                 </div>
             </div>
-            <a href="#" class="flex items-center justify-center  gap-2 text-green-800  transition duration-300 ease hover:text-green-300">
+            <a href="#" class="flex items-center justify-center  gap-2 text-green-800  transition duration-300 ease hover:text-green-600">
                 <span class="text-lg">Find Other</span>
                 <i class="fa-solid fa-angles-right"></i>
 
