@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- link icon cdn -->
      <script src="https://kit.fontawesome.com/5807260d74.js" crossorigin="anonymous"></script>
-    <title>Beranda</title>
+    <title>{% block tittle %}Home{% endblock%}</title>
     <style>
         body {
             height: 200vh;
@@ -54,58 +54,10 @@
             </div>
             
         </div>
-        
-        
     </nav>
 
-    <section class="z-10 w-screen h-screen bg-green-100 flex justify-start flex-col  items-start lg:justify-center lg:items-center">
-        <div class="flex mt-20 px-8 w-full md:mt-25 md:px-8 xl:w-6xl">
-            <div class="w-full h-[200px] bg-green-800  rounded-lg  sm:h-[250px] md:h-[300px] lg:w-3/4 lg:h-[400px]"></div>
-            <div class="w-2/4 h-[400px] rounded-lg grid grid-flow-col hidden lg:grid">
-                <div class="col-12 bg-green-800 w-sm  mb-2  rounded">
-                    <div class=" "></div>
-                </div>
-                <div class="col-12 bg-green-800 w-sm mb-2 mt-2 rounded">
-                    <div class=" "></div>
-                </div>
-                <div class="col-12 bg-green-800 w-sm mt-2 rounded">
-                    <div class=" "></div>
-                </div>
-            </div>
-        </div>
-        <div class="w-full h-[100px]  mt-3 rounded flex items-center justify-center lg:justify-between md:px-8 xl:w-6xl">
-            <div class="flex items-center w-full justify-between px-8 lg:w-3/5 lg:px-0 ">
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease">
-                    <i class="fa-solid fa-plant-wilt text-md md:text-1xl lg:text-2xl "></i>
-                    <p class=" mt-1">plant</p>
-                </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease">
-                    <i class="fa-regular fa-clipboard text-md md:text-1xl lg:text-2xl "></i>
-                    <p class=" mt-1">Guide</p>
-                </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease">
-                    <i class="fa-solid fa-bottle-water text-md md:text-1xl lg:text-2xl "></i>
-                    <p class=" mt-1">Booster</p>
-                </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease">
-                    <i class="fa-solid fa-seedling text-md md:text-1xl lg:text-2xl "></i>
-                    <p class=" mt-1">Seed</p>
-                </div>
-                <div class="hidden items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease md:flex">
-                    <i class="fa-regular fa-comments text-md md:text-1xl lg:text-2xl "></i>
-                    <p class=" mt-1">Comunity</p>
-                </div>
-                <div class="flex items-center justify-center  p-1 rounded flex-col hover:text-green-600 text-green-800 cursor-pointer transition  duration-300 ease lg:text-red-500 md:text-yellow-500">
-                    <i class="fa-solid fa-hands-praying text-md md:text-1xl lg:text-2xl "></i>
-                    <p class=" mt-1 ">Donation</p>
-                </div>
-            </div>
-            <a href="#" class="hidden items-center justify-end w-2/5 pe-3 gap-2 text-green-800  transition duration-300 ease hover:text-green-600 lg:flex">
-                <span class="text-lg">Find Other</span>
-                <i class="fa-solid fa-angles-right"></i>
-
-            </a>
-        </div>
+    <section class="w-screen h-screen flex flex-col justify-center items-center">
+        {% block content %} {% endblock %}
     </section>
 
     <footer class="flex bottom-0 absolute w-full px-5 py-4 items-center justify-center bg-green-800 ">

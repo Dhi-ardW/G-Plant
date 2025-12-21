@@ -1,5 +1,8 @@
 untuk mengaktifkan flask di enviroment powershell/cmd :
 .venv\Scripts\activate
 
+untuk running :
+& "C:/Users/Ard/Downloads/Project Python/.venv/Scripts/python.exe" "c:/Users/Ard/Downloads/Project Python/main.py"
+
 untuk deactive flask :
 deactivate
