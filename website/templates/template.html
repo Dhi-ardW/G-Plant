@@ -6,11 +6,13 @@
     <!-- link Tailwind css CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- link icon cdn -->
-     <script src="https://kit.fontawesome.com/5807260d74.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5807260d74.js" crossorigin="anonymous"></script>
+    
     <title>{% block tittle %}Home{% endblock%}</title>
+    <link rel="icon" href="{{ url_for('static', filename='Asset/logo.png')}}" type="image/x-icon">
     <style>
         body {
-            height: 200vh;
+            
             width: 100vw;
             overflow-x: hidden;
             
@@ -60,7 +62,7 @@
         {% block content %} {% endblock %}
     </section>
 
-    <footer class="flex bottom-0 absolute w-full px-5 py-4 items-center justify-center bg-green-800 ">
+    <footer class="flex bottom-0 mt-5 w-full px-5 py-4 items-center justify-center bg-green-800  ">
         <div class="flex items-center justify-between w-full lg:w-6xl ">
             <div class="flex">
                 <a href="#about" class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base ">About Us</a>
@@ -74,10 +76,13 @@
                     </div>
                 </div>
             </div>
-            <div class="flex ">
+            <!-- <div class="flex ">
                 <button class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/login">log in</a></button>
                 <button class=" px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/signup">sign up</a></button>
+            </div> -->
+            <div class="flex items-center">
                 
+                <a href="/"><img src="{{ url_for('static', filename='asset/logo.png')}}" alt="logo" width="50" height="50" ></a>
             </div>
         </div>
     </footer>
