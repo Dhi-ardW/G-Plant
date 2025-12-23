@@ -6,68 +6,83 @@
 
 <!-- content -->
 {% block content %}
-<!-- login form -->
-  <div class="bg-white rounded-xl shadow-lg flex w-full lg:max-w-5xl max-w-md overflow-hidden mt-10">
+<!-- sign up form -->
+  <div class="bg-white rounded-xl shadow-lg flex w-full  lg:max-w-5xl max-w-md overflow-hidden mt-15 ">
     <div class="bg-white w-full max-w-md rounded-xl  p-8 ">
 
       <!-- Logo / Title -->
       <h1 class="text-3xl font-bold text-green-800 mb-2 uppercase text-center">Create your account</h1>
-      <p class="text-center text-gray-600 mb-6">G Plant</p>
+      <p class="text-center text-gray-600 mb-2">G Plant</p>
 
       <!-- Form -->
       <form class="space-y-4" method="POST">
         <div>
-          <label class="text-sm text-green-800">Email</label>
+          <label for="email" class="text-sm text-green-800">Email</label>
           <input
             id="email"
+            name="email"
             type="email"
-            required
+           
+            class="w-full mt-1 px-3 py-2 border rounded-md
+                  focus:outline-none focus:ring-2 focus:ring-green-800 "
+          />
+        </div>
+        <div>
+          <label for="firstname" class="text-sm text-green-800">First Name</label>
+          <input
+            id="firstname"
+            name="firstname"
+            type="text"
+            
             class="w-full mt-1 px-3 py-2 border rounded-md
                   focus:outline-none focus:ring-2 focus:ring-green-800 "
           />
         </div>
         <div>
           <div class="flex justify-between">
-            <label class="text-sm text-green-800">Password</label>
-            <a href="#" class="text-sm text-green-800 hover:underline">
-              Forgot?
-            </a>
+            <label for="password" class="text-sm text-green-800">Password</label>
+            
           </div>
           <input
           id="password"
+          name="password"
           type="password"
-            required
+            
+            class="w-full mt-1 px-3 py-2 border rounded-md
+                  focus:outline-none focus:ring-2 focus:ring-green-800"
+          />
+        </div>
+        <div>
+          <div class="flex justify-between">
+            <label class="text-sm text-green-800">Confirm Password</label>
+          </div>
+          <input
+          id="password2"
+          type="password"
+          name="password2"
+            
             class="w-full mt-1 px-3 py-2 border rounded-md
                   focus:outline-none focus:ring-2 focus:ring-green-800"
           />
         </div>
 
-        <div class="flex items-center gap-2">
-          <input type="checkbox" class="accent-teal-600">
-          <span class="text-sm text-gray-600">Remember this device</span>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" class="accent-teal-600">
+            <span class="text-sm text-gray-600">Remember this device</span>
+          </div>
+          <a href="/login" class="text-decoration-none text-sm text-gray-600 hove:text-green-800 hover:underline hover:text-green-800">already have account?</a>  
         </div>
 
         <button
           type="submit"
           class="w-full bg-green-800 cursor-pointer text-white py-2 rounded-md
                 hover:bg-green-900 transition">
-          Sign in
+          Create Account
         </button>
       </form>
 
-      <!-- Divider -->
-      <div class="my-6 flex items-center gap-2">
-        <div class="flex-1 h-px bg-gray-200"></div>
-        <span class="text-sm text-gray-400">or</span>
-        <div class="flex-1 h-px bg-gray-200"></div>
-      </div>
-
-      
-      <!-- Footer -->
-      <p class="text-center text-sm text-gray-500 mt-6">
-        New here?
-        <a href="/signup" class="text-green-800 hover:underline">Create an account</a>
-      </p>
+    
 
     </div>
     <div class="hidden lg:flex w-full items-center justify-center bg-white">

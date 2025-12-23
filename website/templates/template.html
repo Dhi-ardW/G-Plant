@@ -32,8 +32,55 @@
     </style>
 </head>
 <body class="bg-green-100 relative">
+
+    <!-- notifikasi pakek flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'failed' %}
+                    <div id="modal" class="fixed inset-0 absolute bg-black/60 flex items-center  justify-center z-999">
+                        <!-- Box Modal -->
+                        <div class="bg-white w-sm flex flex-col items-center justify-start rounded-lg shadow-lg relative ">
+                            <div class="flex bg-red-600 items-center justify-center p-5 w-full rounded-t-lg">
+                                <i class="fa-solid fa-triangle-exclamation text-white text-6xl"></i>
+                            </div>
+                            <div class="flex p-10 text-center flex-col justify-center items-center">
+                                <h2 class="text-2xl text-green-800 font-semibold uppercase mb-5 ">notification !!!</h2>
+                                <p class="text-md text-green-950 mb-7 capitalize">
+                                    {{ message }}
+                                </p>
+                                    <!-- Tombol Close -->
+                                <button onclick="closeModal()" class="cursor-pointer w-[200px] bg-red-600  py-2 rounded text-white hover:bg-red-700 text-xl mt-5"> 
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div id="modal" class="fixed inset-0 absolute bg-black/60 flex items-center  justify-center z-999">
+                        <!-- Box Modal -->
+                        <div class="bg-white w-sm flex flex-col items-center justify-start rounded-lg shadow-lg relative ">
+                            <div class="flex bg-green-400 items-center justify-center p-5 w-full rounded-t-lg">
+                                <i class="fa-solid fa-triangle-exclamation text-white text-6xl"></i>
+                            </div>
+                            <div class="flex p-10 text-center flex-col justify-center items-center">
+                                <h2 class="text-2xl text-green-800 font-semibold uppercase mb-5 ">notification !!!</h2>
+                                <p class="text-md text-green-950 mb-7 capitalize">
+                                    {{ message }}
+                                </p>
+                                    <!-- Tombol Close -->
+                                <button onclick="closeModal()" class="cursor-pointer w-[200px] bg-green-400  py-2 rounded text-white hover:bg-green-400 text-xl mt-5"> 
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}    
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     
-    <nav class="w-screen absolute z-999 justify-center flex py-3 px-5 bg-green-800 ">
+    <nav class="w-screen absolute z-990 justify-center flex py-3 px-5 bg-green-800 ">
         <div class="flex w-full items-center justify-between  xl:w-6xl">
             <div class="flex items-center">
                 <a href="/" class="pe-3 text-green-100 text-3xl font-serif hover:text-green-300 cursor-pointer  md:text-4xl lg:text-4xl xl:text-5xl">GPLANT</a>
@@ -58,11 +105,15 @@
         </div>
     </nav>
 
+    
+
+
+
     <section class="w-screen h-screen flex flex-col justify-center items-center">
         {% block content %} {% endblock %}
     </section>
 
-    <footer class="flex bottom-0 mt-5 w-full px-5 py-4 items-center justify-center bg-green-800  ">
+    <footer class="flex bottom-0 mt-0 w-full px-5 py-2 items-center justify-center bg-green-800  ">
         <div class="flex items-center justify-between w-full lg:w-6xl ">
             <div class="flex">
                 <a href="#about" class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base ">About Us</a>
@@ -82,7 +133,7 @@
             </div> -->
             <div class="flex items-center">
                 
-                <a href="/"><img src="{{ url_for('static', filename='asset/logo.png')}}" alt="logo" width="50" height="50" ></a>
+                <a href="/"><img src="{{ url_for('static', filename='asset/logo.png')}}" alt="logo" width="40" height="40" ></a>
             </div>
         </div>
     </footer>
