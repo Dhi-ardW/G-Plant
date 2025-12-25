@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, db
+from .models import User
+from . import db
+from flask_login import login_user, login_required, logout_user, current_user
 # hashing
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -11,7 +13,9 @@ def signup() :
         email = request.form.get('email') 
         firstname = request.form.get('firstname') 
         password = request.form.get('password') 
-        password2 = request.form.get('password2') 
+        password2 = request.form.get('password2')
+
+        user = User.query.filter_by(email=email).first() 
 
         if len(email) < 4 :
             flash('email must have more than 3 character', category='failed')
@@ -21,26 +25,49 @@ def signup() :
             flash('each password must be same', category='failed')
         elif len(password) < 7 :
             flash('Password must have more than 7 character', category='failed')
+        elif user :
+            flash('Email have already, login with your password')
+            return redirect(url_for('auth.login'))
         else :
             # check database
-            if User:
+            if user:
                 flash('Email sudah terdaftar, silakan login', category='succes')
                 return redirect(url_for('auth.login'))
+                
 
             # add user to database
             new_user = User(email=email, firstname=firstname, password=generate_password_hash(password, method='pbkdf2:sha256'))
             db.session.add(new_user)
             db.session.commit()
+            login_user(user, remember=True)
             # add notif
             flash('Account has created', category='succes')
-            return redirect(url_for('views.about'))
+            return redirect(url_for('views.index'))
 
     return render_template('signup.html') 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login() :
-    return render_template('login.html', )  
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        user = User.query.filter_by(email=email).first() 
+        if user :
+            if check_password_hash(user.password, password) :
+                flash('Login Succesfuly, enjoy green life', category='succes')
+                login_user(user, remember=True) 
+                return redirect(url_for('views.index'))
+            else :
+                flash ('Incorrect Password, Try Again ', category='failed')
+                return redirect(url_for('auth.login'))
+        else :
+           flash('email does not exits', category='failed')         
+
+    return render_template("login.html", boolean=True)  
 
 @auth.route('/logout')
+@login_required
 def logout() :
-    return render_template('index.html')   
+    logout_user()
+    return redirect(url_for('auth.login'))
