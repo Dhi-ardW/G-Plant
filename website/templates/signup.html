@@ -4,6 +4,11 @@
 <!-- tittle -->
 {% block tittle %} Sign in Account {% endblock %}
 
+<!-- navlink -->
+{% block navlink %}
+<button class=" hover:bg-green-300 rounded  py-1 px-2 bg-green-100 text-green-800 text-base md:py-2 md:px-4"><a href="/login">Log in</a></button>
+{% endblock%}
+
 <!-- content -->
 {% block content %}
 <!-- sign up form -->
@@ -81,12 +86,11 @@
           Create Account
         </button>
       </form>
-
-    
-
     </div>
     <div class="hidden lg:flex w-full items-center justify-center bg-white">
       <img src="{{ url_for('static', filename='Asset/grow2.png')}}" alt="grow">
     </div>
    </div>
 {% endblock %}
+
+<!-- block link -->

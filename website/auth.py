@@ -44,7 +44,7 @@ def signup() :
             flash('Account has created', category='succes')
             return redirect(url_for('views.index'))
 
-    return render_template('signup.html') 
+    return render_template('signup.html', user=current_user) 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login() :
@@ -57,17 +57,17 @@ def login() :
             if check_password_hash(user.password, password) :
                 flash('Login Succesfuly, enjoy green life', category='succes')
                 login_user(user, remember=True) 
-                return redirect(url_for('views.index'))
+                return redirect(url_for('views.index'))     
             else :
                 flash ('Incorrect Password, Try Again ', category='failed')
                 return redirect(url_for('auth.login'))
         else :
            flash('email does not exits', category='failed')         
 
-    return render_template("login.html", boolean=True)  
+    return render_template("login.html", user=current_user)  
 
 @auth.route('/logout')
 @login_required
-def logout() :
+def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('views.index'))

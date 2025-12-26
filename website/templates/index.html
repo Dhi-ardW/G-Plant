@@ -8,13 +8,12 @@
     <!-- link icon cdn -->
      <script src="https://kit.fontawesome.com/5807260d74.js" crossorigin="anonymous"></script>
     <title>Beranda</title>
-    <link rel="icon" href="{{ url_for('static', filename='Asset/logo.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='asset/logo.png')}}" type="image/x-icon">
     <style>
         body {
             height: 200vh;
             width: 100vw;
             overflow-x: hidden;
-            
         }
         .border-right {
             border-right: 2px solid rgb(24, 185, 91);
@@ -26,6 +25,20 @@
         }
         #search {
             outline: none;
+        }
+        .menu {
+            bottom: -250px;
+            right: -5px;
+        }
+        .active {
+            display: flex;
+        }
+        .category-btn:hover .category {
+            display: flex;
+        }
+        .category {
+            display: none;
+            top: 28px;
         }
 
     </style>
@@ -82,12 +95,25 @@
     <nav class="w-screen absolute z-999 justify-center flex py-3 px-5 bg-green-800 ">
         <div class="flex w-full items-center justify-between  xl:w-6xl">
             <div class="flex items-center">
-                <a href="/" class="pe-3 text-green-100 text-3xl font-serif hover:text-green-300 cursor-pointer  md:text-4xl lg:text-4xl xl:text-5xl">GPLANT</a>
-                <div class=" border-left px-3 text-green-100 hover:text-green-300">
-                    <div class="flex items-center gap-2 cursor-pointer hidden  xl:flex">
+                <a href="/" class="pe-3 items-center flex text-green-100 text-3xl font-serif hover:text-green-300 cursor-pointer  ">
+                    <img src="{{ url_for('static', filename='asset/logo.png')}}" alt="logo" width="50" height="50">
+                    <p>PLANT</p>
+                </a>
+                <div class=" border-left px-3 text-green-100 hover:text-green-300 relative">
+                    <div class="flex items-center gap-2 cursor-pointer hidden  xl:flex category-btn" >
                         <p class="flex items-center text-xl cursor-pointer ">Category</p>
                         <i class="fa-solid fa-chevron-down"></i>
+                        <!-- list category -->
+                        <ul class=" bg-white text-green-800 absolute rounded w-[150px]  items-start flex-col text-end py-3 ps-5 text-lg shadow-xl/20 category" >
+                        <li class="mb-3 mt-1 hover:text-green-600"><a href="">Profile</a></li>
+                        <li class="mb-3 hover:text-green-600"><a href="">Plant seed</a></li>
+                        <li class="mb-3 hover:text-green-600"><a href="">Guide</a></li>
+                        <li class="mb-3 hover:text-green-600"><a href="">contact</a></li>
+                        <li class="mb-2 text-red-600 hover:text-red-500 ">
+                            <a href="/logout" ><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>logout</a></li>
+                    </ul>
                     </div>
+                    
                 </div>
             </div>
             <div class="flex items-center justify-between">
@@ -95,10 +121,24 @@
                     <input type="text" name="search" id="search" placeholder="Cari Tanaman Anda . . ." class="text-green-100  w-full ">
                     <button class="text-green-800  cursor-pointer  hover:bg-green-300 bg-green-100 py-2 px-3"><i class="fa-solid fa-magnifying-glass "></i></button>
                 </div>
+                {% if user.is_authenticated %}
+                <div class="flex justify-center items-center relative mx-4">
+                    <i class="fa-solid fa-circle-user text-green-100 text-4xl cursor-pointer transition duration-300 ease hover:text-green-300" id="profile"></i>
+                    <ul class=" bg-white text-green-800 absolute rounded w-[150px] hidden items-end flex-col text-end py-3 pe-5 text-lg menu shadow-xl/20" id="menu">
+                        <li class="mb-3 mt-1 hover:text-green-600"><a href="">Profile</a></li>
+                        <li class="mb-3 hover:text-green-600"><a href="">Plant seed</a></li>
+                        <li class="mb-3 hover:text-green-600"><a href="">Guide</a></li>
+                        <li class="mb-3 hover:text-green-600"><a href="">contact</a></li>
+                        <li class="mb-2 text-red-600 hover:text-red-500 ">
+                            <a href="/logout" ><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
                 <div class="flex  cursor-pointer">
                     <button class=" hover:text-green-300 py-1 px-2 rounded mx-2 text-green-100  text-base md:py-2 md:px-4"><a href="/login">log in</a></button>
                     <button class=" hover:bg-green-300 rounded  py-1 px-2 bg-green-100 text-green-800 text-base md:py-2 md:px-4"><a href="/signup">sign up</a></button>
                 </div>
+                {% endif %}
             </div>
             
         </div>
@@ -156,7 +196,7 @@
         </div>
     </section>
 
-    <footer class="flex bottom-0 absolute w-full px-5 py-4 items-center justify-center bg-green-800 ">
+    <footer class="flex bottom-0 absolute w-full px-5 py-2 items-center justify-center bg-green-800 ">
         <div class="flex items-center justify-between w-full lg:w-6xl ">
             <div class="flex">
                 <a href="#about" class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base ">About Us</a>
@@ -171,8 +211,9 @@
                 </div>
             </div>
             <div class="flex ">
-                <button class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/login">log in</a></button>
-                <button class=" px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/signup">sign up</a></button>
+                <button class=" px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/logout">Log out</a></button>
+                <!-- <button class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/login">log in</a></button>
+                <button class=" px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/signup">sign up</a></button> -->
                 
             </div>
         </div>

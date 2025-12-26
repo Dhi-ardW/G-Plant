@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/5807260d74.js" crossorigin="anonymous"></script>
     
     <title>{% block tittle %}Home{% endblock%}</title>
-    <link rel="icon" href="{{ url_for('static', filename='Asset/logo.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='asset/logo.png')}}" type="image/x-icon">
     <style>
         body {
             
@@ -92,13 +92,8 @@
                 </div>
             </div>
             <div class="flex items-center justify-between">
-                <div class="items-center justify-between  ps-3 border border-green-100 rounded hidden   md:w-md  lg:w-xl lg:flex" >
-                    <input type="text" name="search" id="search" placeholder="Cari Tanaman Anda . . ." class="text-green-100  w-full ">
-                    <button class="text-green-800  cursor-pointer  hover:bg-green-300 bg-green-100 py-2 px-3"><i class="fa-solid fa-magnifying-glass "></i></button>
-                </div>
-                <div class="flex  cursor-pointer">
-                    <button class=" hover:text-green-300 py-1 px-2 rounded mx-2 text-green-100  text-base md:py-2 md:px-4"><a href="/login">log in</a></button>
-                    <button class=" hover:bg-green-300 rounded  py-1 px-2 bg-green-100 text-green-800 text-base md:py-2 md:px-4"><a href="/signup">sign up</a></button>
+                <div class="flex ms-4 cursor-pointer">
+                    {% block navlink%}{% endblock%}
                 </div>
             </div>
             
@@ -127,14 +122,16 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="flex ">
+            {% if user.is_authenticated %}
+            <div class="flex ">
                 <button class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/login">log in</a></button>
                 <button class=" px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/signup">sign up</a></button>
-            </div> -->
-            <div class="flex items-center">
-                <a href="/logout" class=" px-3 text-green-100 hover:text-red-300 text-sm md:text-base ">Log out</a>
-                <!-- <a href="/"><img src="{{ url_for('static', filename='asset/logo.png')}}" alt="logo" width="40" height="40" ></a> -->
             </div>
+            {% else %}
+            <div class="flex items-center">
+                <a href="/"><img src="{{ url_for('static', filename='asset/logo.png')}}" alt="logo" width="40" height="40" ></a>
+            </div>
+            {% endif %}
         </div>
     </footer>
 
