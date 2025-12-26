@@ -1,152 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- link Tailwind css CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- link icon cdn -->
-     <script src="https://kit.fontawesome.com/5807260d74.js" crossorigin="anonymous"></script>
-    <title>Beranda</title>
-    <link rel="icon" href="{{ url_for('static', filename='asset/logo.png')}}" type="image/x-icon">
-    <style>
-        body {
-            height: 200vh;
-            width: 100vw;
-            overflow-x: hidden;
-        }
-        .border-right {
-            border-right: 2px solid rgb(24, 185, 91);
-            border-radius: 1px;
-        }
-        .border-left {
-            border-left: 2px solid rgb(24, 185, 91);
-            border-radius: 1px;
-        }
-        #search {
-            outline: none;
-        }
-        .menu {
-            bottom: -250px;
-            right: -5px;
-        }
-        .active {
-            display: flex;
-        }
-        .category-btn:hover .category {
-            display: flex;
-        }
-        .category {
-            display: none;
-            top: 28px;
-        }
+<!-- template -->
+{% extends "template.html" %} 
 
-    </style>
-</head>
-<body class="bg-green-100 relative">
 
-    <!-- notifikasi pakek flash -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                {% if category == 'failed' %}
-                    <div id="modal" class="fixed inset-0 absolute bg-black/60 flex items-center  justify-center z-999">
-                        <!-- Box Modal -->
-                        <div class="bg-white w-sm flex flex-col items-center justify-start rounded-lg shadow-lg relative ">
-                            <div class="flex bg-red-600 items-center justify-center p-5 w-full rounded-t-lg">
-                                <i class="fa-solid fa-triangle-exclamation text-white text-6xl"></i>
-                            </div>
-                            <div class="flex p-10 text-center flex-col justify-center items-center">
-                                <h2 class="text-2xl text-green-800 font-semibold uppercase mb-5 ">notification !!!</h2>
-                                <p class="text-md text-green-950 mb-7 capitalize">
-                                    {{ message }}
-                                </p>
-                                    <!-- Tombol Close -->
-                                <button onclick="closeModal()" class="cursor-pointer w-[200px] bg-red-600  py-2 rounded text-white hover:bg-red-700 text-xl mt-5"> 
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
-                    <div id="modal" class="fixed inset-0 absolute bg-black/60 flex items-center  justify-center z-999">
-                        <!-- Box Modal -->
-                        <div class="bg-white w-sm flex flex-col items-center justify-start rounded-lg shadow-lg relative ">
-                            <div class="flex bg-green-400 items-center justify-center p-5 w-full rounded-t-lg">
-                                <i class="fa-solid fa-triangle-exclamation text-white text-6xl"></i>
-                            </div>
-                            <div class="flex p-10 text-center flex-col justify-center items-center">
-                                <h2 class="text-2xl text-green-800 font-semibold uppercase mb-5 ">notification !!!</h2>
-                                <p class="text-md text-green-950 mb-7 capitalize">
-                                    {{ message }}
-                                </p>
-                                    <!-- Tombol Close -->
-                                <button onclick="closeModal()" class="cursor-pointer w-[200px] bg-green-400  py-2 rounded text-white hover:bg-green-400 text-xl mt-5"> 
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}    
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-    
-    <nav class="w-screen absolute z-999 justify-center flex py-3 px-5 bg-green-800 ">
-        <div class="flex w-full items-center justify-between  xl:w-6xl">
-            <div class="flex items-center">
-                <a href="/" class="pe-3 items-center flex text-green-100 text-3xl font-serif hover:text-green-300 cursor-pointer  ">
-                    <img src="{{ url_for('static', filename='asset/logo.png')}}" alt="logo" width="50" height="50">
-                    <p>PLANT</p>
-                </a>
-                <div class=" border-left px-3 text-green-100 hover:text-green-300 relative">
-                    <div class="flex items-center gap-2 cursor-pointer hidden  xl:flex category-btn" >
-                        <p class="flex items-center text-xl cursor-pointer ">Category</p>
-                        <i class="fa-solid fa-chevron-down"></i>
-                        <!-- list category -->
-                        <ul class=" bg-white text-green-800 absolute rounded w-[150px]  items-start flex-col text-end py-3 ps-5 text-lg shadow-xl/20 category" >
-                        <li class="mb-3 mt-1 hover:text-green-600"><a href="">Profile</a></li>
-                        <li class="mb-3 hover:text-green-600"><a href="">Plant seed</a></li>
-                        <li class="mb-3 hover:text-green-600"><a href="">Guide</a></li>
-                        <li class="mb-3 hover:text-green-600"><a href="">contact</a></li>
-                        <li class="mb-2 text-red-600 hover:text-red-500 ">
-                            <a href="/logout" ><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>logout</a></li>
-                    </ul>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="flex items-center justify-between">
-                <div class="items-center justify-between  ps-3 border border-green-100 rounded hidden   md:w-md  lg:w-xl lg:flex" >
-                    <input type="text" name="search" id="search" placeholder="Cari Tanaman Anda . . ." class="text-green-100  w-full ">
-                    <button class="text-green-800  cursor-pointer  hover:bg-green-300 bg-green-100 py-2 px-3"><i class="fa-solid fa-magnifying-glass "></i></button>
-                </div>
-                {% if user.is_authenticated %}
-                <div class="flex justify-center items-center relative mx-4">
-                    <i class="fa-solid fa-circle-user text-green-100 text-4xl cursor-pointer transition duration-300 ease hover:text-green-300" id="profile"></i>
-                    <ul class=" bg-white text-green-800 absolute rounded w-[150px] hidden items-end flex-col text-end py-3 pe-5 text-lg menu shadow-xl/20" id="menu">
-                        <li class="mb-3 mt-1 hover:text-green-600"><a href="">Profile</a></li>
-                        <li class="mb-3 hover:text-green-600"><a href="">Plant seed</a></li>
-                        <li class="mb-3 hover:text-green-600"><a href="">Guide</a></li>
-                        <li class="mb-3 hover:text-green-600"><a href="">contact</a></li>
-                        <li class="mb-2 text-red-600 hover:text-red-500 ">
-                            <a href="/logout" ><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>logout</a></li>
-                    </ul>
-                </div>
-                {% else %}
-                <div class="flex  cursor-pointer">
-                    <button class=" hover:text-green-300 py-1 px-2 rounded mx-2 text-green-100  text-base md:py-2 md:px-4"><a href="/login">log in</a></button>
-                    <button class=" hover:bg-green-300 rounded  py-1 px-2 bg-green-100 text-green-800 text-base md:py-2 md:px-4"><a href="/signup">sign up</a></button>
-                </div>
-                {% endif %}
-            </div>
-            
-        </div>
-        
-        
-    </nav>
+<!-- category -->
+ {% block category %} 
+ <div class=" border-left px-3 text-green-100 hover:text-green-300 relative">
+    <div class="flex items-center gap-2 cursor-pointer hidden  xl:flex category-btn" >
+        <p class="flex items-center text-xl cursor-pointer ">Category</p>
+        <i class="fa-solid fa-chevron-down"></i>
+        <!-- list category -->
+        <ul class=" bg-white text-green-800 absolute rounded w-[150px]  items-start flex-col text-end py-3 ps-5 text-lg shadow-xl/20 category" >
+            <li class="mb-3 mt-1 hover:text-green-600"><a href="">Profile</a></li>
+            <li class="mb-3 hover:text-green-600"><a href="">Plant seed</a></li>
+            <li class="mb-3 hover:text-green-600"><a href="">Guide</a></li>
+            <li class="mb-3 hover:text-green-600"><a href="">contact</a></li>
+            <li class="mb-2 text-red-600 hover:text-red-500 ">
+            <a href="/logout" ><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>logout</a></li>
+        </ul>
+    </div>    
+</div>
+ {% endblock%}
 
-    <section class="z-10 w-screen h-screen bg-green-100 flex justify-start flex-col  items-start lg:justify-center lg:items-center">
+<!-- profile -->
+ {% block profile %}
+    <div class="items-center justify-between  ps-3 border border-green-100 rounded hidden   md:w-md  lg:w-xl lg:flex" >
+        <input type="text" name="search" id="search" placeholder="Cari Tanaman Anda . . ." class="text-green-100  w-full ">
+         <button class="text-green-800  cursor-pointer  hover:bg-green-300 bg-green-100 py-2 px-3"><i class="fa-solid fa-magnifying-glass "></i></button>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="flex justify-center items-center relative ms-4">
+        <i class="fa-solid fa-circle-user text-green-100 text-3xl cursor-pointer transition duration-300 ease hover:text-green-300 md:text-4xl" id="profile"></i>
+        <ul class=" bg-white text-green-800 absolute rounded w-[150px] hidden items-end flex-col text-end py-3 pe-5 text-lg menu shadow-xl/20" id="menu">
+            <li class="mb-3 mt-1 hover:text-green-600"><a href="">Profile</a></li>
+            <li class="mb-3 hover:text-green-600"><a href="">Plant seed</a></li>
+            <li class="mb-3 hover:text-green-600"><a href="">Guide</a></li>
+            <li class="mb-3 hover:text-green-600"><a href="">contact</a></li>
+            <li class="mb-2 text-red-600 hover:text-red-500 ">
+            <a href="/logout" ><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>logout</a></li>
+        </ul>
+    </div>
+    {% else %}
+    <div class="flex  cursor-pointer">
+        <button class=" hover:text-green-300 py-1 px-2 rounded mx-2 text-green-100  text-base md:py-2 md:px-4"><a href="/login">log in</a></button>
+        <button class=" hover:bg-green-300 rounded  py-1 px-2 bg-green-100 text-green-800 text-base md:py-2 md:px-4"><a href="/signup">sign up</a></button>
+    </div>
+    {% endif %}
+ {% endblock%}
+
+<!-- content -->
+ {% block content %} 
+  <section class="z-10 w-screen h-screen bg-green-100 flex justify-start flex-col  items-start lg:justify-center lg:items-center">
         <div class="flex mt-20 px-8 w-full md:mt-25 md:px-8 xl:w-6xl">
             <div class="w-full h-[200px] bg-green-800  rounded-lg  sm:h-[250px] md:h-[300px] lg:w-3/4 lg:h-[400px]"></div>
             <div class="w-2/4 h-[400px] rounded-lg grid grid-flow-col hidden lg:grid">
@@ -191,38 +94,7 @@
             <a href="#" class="hidden items-center justify-end w-2/5 pe-3 gap-2 text-green-800  transition duration-300 ease hover:text-green-600 lg:flex">
                 <span class="text-lg">Find Other</span>
                 <i class="fa-solid fa-angles-right"></i>
-
             </a>
         </div>
     </section>
-
-    <footer class="flex bottom-0 absolute w-full px-5 py-2 items-center justify-center bg-green-800 ">
-        <div class="flex items-center justify-between w-full lg:w-6xl ">
-            <div class="flex">
-                <a href="#about" class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base ">About Us</a>
-                <a href="#product" class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base hidden md:flex">Find Plant</a>
-                <div class="flex cursor-pointer px-3 gap-2 text-green-100  ">
-                    <p class="text-sm md:text-base">Follow Gplant</p>
-                    <div class="flex items-center gap-1">
-                        <i class="fa-brands fa-instagram text-green-100 hover:text-green-300 text-sm md:text-base" ></i>
-                        <i class="fa-brands fa-x-twitter text-green-100 hover:text-green-300 text-sm md:text-base"></i>
-                        <i class="fa-brands fa-tiktok text-green-100 hover:text-green-300 text-sm md:text-base"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="flex ">
-                <button class=" px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/logout">Log out</a></button>
-                <!-- <button class="border-right px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/login">log in</a></button>
-                <button class=" px-3 text-green-100 hover:text-green-300 text-sm md:text-base"><a href="/signup">sign up</a></button> -->
-                
-            </div>
-        </div>
-    </footer>
-
-    <script 
-    type="text/javascript" 
-    src="{{ url_for('static', filename='index.js') }}">
-
-    </script>
-</body>
-</html>
+ {% endblock%}
